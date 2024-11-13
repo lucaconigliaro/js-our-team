@@ -52,7 +52,7 @@ const teamMembers = [
 //Creo la card
 const createCard = ({name, role, email, img}) => {
   return `
-  <div class="card col-md-4 p-3 m-2" style="width: 18rem;">
+  <div class="card text-light bg-dark bg-gradient mb-3 col-md-4 p-3 m-2" style="width: 18rem;">
     <img src="${img}" class="card-img-top" alt="${name}">
         <div class="card-body">
            <h5 class="card-title">${name}</h5>
