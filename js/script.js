@@ -46,24 +46,34 @@ const teamMembers = [
 
 
 //Prelevo gli elementi dall'Html
- const teamCointainerElem = document.querySelector(".team-container")
+const teamCointainerElem = document.querySelector(".team-container")
+const memberFormElem = document.getElementById("member-form");
+const nameInput = document.getElementById("name");
+const roleInput = document.getElementById("role");
+const imageInput = document.getElementById("image");
 
 
 //Creo la card
 const createCard = ({name, role, email, img}) => {
   return `
-  <div class="card text-light bg-dark bg-gradient mb-3 col-md-4 p-3 m-2" style="width: 18rem;">
-    <img src="${img}" class="card-img-top" alt="${name}">
-        <div class="card-body">
-           <h5 class="card-title">${name}</h5>
-           <p class="card-text">${role}</p>
-        </div>
-        <div class="card-body">
-           <a href="#" class="card-link">${email}</a>
-       </div>
+  <div class="card bg-dark bg-gradient text-white col-md-3 p-3 m-3">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="${img}" class="img-fluid rounded-start" alt="${name}">
     </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${name}</h5>
+        <p class="card-text">${role}</p>
+        <a href="#" class="card-link">${email}</a>
+      </div>
+    </div>
+  </div>
+</div>
  `;
 };
+
+
 // console.log(createCard)
 
 
@@ -77,5 +87,28 @@ const renderTeam = () => {
 teamCointainerElem.innerHTML = items;
 };
 
-//Invoco la funzione
+
+//Evento
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const name = nameInput.value.trim();
+  const role = roleInput.value.trim();
+  const image = imageInput.value.trim();  
+
+  const newMember = {
+    name,
+    role,
+    image
+  }
+
+  teamMembers.push(newMember);
+  // console.log(teamMembers);
+
+  renderTeam();
+
+  memberFormElem.reset();
+};
+
+// Invoco le funzioni
 renderTeam();
+memberFormElem.addEventListener("submit", handleSubmit);
